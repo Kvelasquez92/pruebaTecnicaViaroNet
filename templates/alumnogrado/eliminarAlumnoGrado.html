@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Confirmación de borrado</title>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      <h2>Realmente desea eliminar este alumno grado {{object.alumnoId.nombre}} en {{object.gradoId.nombre}}?</h2>
+      <button type="submit">Sí, eliminar</button>
+      <button onclick="location.href='{%url 'profesores:listar'%}'" type="button">Cancelar</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Nuevo Profesor</title>
+  </head>
+  <body>
+    <form method="post">
+    {% csrf_token %}
+          <p >Asignar Alumno:</p>
+          <select name="alumnoId" required="required">
+          {% for alumno in alumnos %}
+            <option value="{{alumno.id}}">{{alumno.nombre}} {{alumno.apellidos}}</option>
+            {% endfor %}
+          </select>
+                <p >Asignar Grado:</p>
+                <select name="gradoId" required="required">
+                {% for grado in grados %}
+                  <option value="{{grado.id}}">{{grado.nombre}} | {{grado.profesorId.nombre}} {{grado.profesorId.apellidos}}</option>
+                  {% endfor %}
+                </select>
+              <p >Asignar Seccion:</p>
+              {{form.seccion}}
+    <button type="submit" >Crear</button>
+    </form>
+  </body>
+</html>

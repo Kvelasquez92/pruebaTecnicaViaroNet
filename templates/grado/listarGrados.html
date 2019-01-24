@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    #listado {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    #listado td, #listado thead {
+    border: 1px solid #ddd;
+    padding: 8px;
+    }
+
+    #listado thead {
+      background-color: #A9F5A9;
+    }
+
+</style>
+    <meta charset="utf-8">
+    <title>Grados</title>
+  </head>
+  <body>
+    <table id="listado">
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Profesor</td>
+          <td>Operaciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% if object_list %}
+        {% for grado in object_list %}
+        <tr>
+          <td>{{ grado.nombre }}</td>
+          <td>{{ grado.profesorId.nombre }} {{ grado.profesorId.apellidos }}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'grados:editar' grado.id %}">Editar</a>
+            <a class="btn btn-primary" href="{% url 'grados:eliminar' grado.id %}">Borrar</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No existen grados.</h3>
+        {% endif %}
+        <tr>
+          <td>
+          <a href="{% url 'grados:crear' %}">Agregar Grado</a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    #listado {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    #listado td, #listado thead {
+    border: 1px solid #ddd;
+    padding: 8px;
+    }
+
+    #listado thead {
+      background-color: #A9F5A9;
+    }
+
+</style>
+    <meta charset="utf-8">
+    <title>Profesores</title>
+  </head>
+  <body>
+    <table id="listado">
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Apellidos</td>
+          <td>Genero</td>
+          <td>Operaciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% if object_list %}
+        {% for profesor in object_list %}
+        <tr>
+          <td>{{ profesor.nombre }}</td>
+          <td>{{ profesor.apellidos }}</td>
+          <td>{{ profesor.genero }}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'profesores:editar' profesor.id %}">Editar</a>
+            <a class="btn btn-primary" href="{% url 'profesores:eliminar' profesor.id %}">Borrar</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No existen profesores.</h3>
+        {% endif %}
+        <tr>
+          <td>
+          <a href="{% url 'profesores:crear' %}">Agregar Profesor</a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

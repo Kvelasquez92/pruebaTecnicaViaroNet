@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    #listado {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    #listado td, #listado thead {
+    border: 1px solid #ddd;
+    padding: 8px;
+    }
+
+    #listado thead {
+      background-color: #A9F5A9;
+    }
+
+</style>
+    <meta charset="utf-8">
+    <title>Alumnos</title>
+  </head>
+  <body>
+    <table id="listado">
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Apellidos</td>
+          <td>Genero</td>
+          <td>Fecha de Nacimiento</td>
+          <td>Operaciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% if object_list %}
+        {% for alumno in object_list %}
+        <tr>
+          <td>{{ alumno.nombre }}</td>
+          <td>{{ alumno.apellidos }}</td>
+          <td>{{ alumno.genero }}</td>
+          <td>{{ alumno.fechaNacimiento }}</td>
+          <td>
+            <a class="btn btn-primary" href="{% url 'alumnos:editar' alumno.id %}">Editar</a>
+            <a class="btn btn-primary" href="{% url 'alumnos:eliminar' alumno.id %}">Borrar</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h3>No existen alumnos.</h3>
+        {% endif %}
+        <tr>
+          <td>
+          <a href="{% url 'alumnos:crear' %}">Agregar Alumno</a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>
